@@ -82,4 +82,9 @@ class DatabaseHelper {
     final db = await instance.database;
     return await db.update('reports', {'isSynced': 1}, where: 'id = ?', whereArgs: [id]);
   }
+
+  Future<void> clearAllReports() async {
+    final db = await instance.database;
+    await db.delete('reports');
+  }
 }

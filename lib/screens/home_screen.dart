@@ -55,6 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _handleLogout() async {
+    await DatabaseHelper.instance.clearAllReports(); 
+    
     await _authService.signOut();
     if (mounted) {
       Navigator.pushReplacement(
