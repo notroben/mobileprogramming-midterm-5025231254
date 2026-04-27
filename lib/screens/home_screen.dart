@@ -96,12 +96,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Determine which view to show
     Widget currentBody;
     if (_selectedIndex == 0) {
-      currentBody = const ForumFeedScreen(); // THE NEW PUBLIC FEED
+      currentBody = const ForumFeedScreen();
     } else {
-      currentBody = _buildLocalList(); // YOUR EXISTING LOCAL LIST
+      currentBody = _buildLocalList();
     }
 
     return Scaffold(
@@ -136,10 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // This is your old HomeScreen body logic moved into a helper method
   Widget _buildLocalList() {
     if (_isLoadingLocal) return const Center(child: CircularProgressIndicator());
-    if (_localReports.isEmpty) return const Center(child: Text('Belum ada laporan lokal.'));
+    if (_localReports.isEmpty) return const Center(child: Text('Kamu belum membuat laporan.'));
     
     return ListView.builder(
       itemCount: _localReports.length,

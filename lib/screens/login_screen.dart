@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import 'home_screen.dart';
-import 'register_screen.dart'; // We will create this next
+import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -42,7 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
       if (user == null) {
         setState(() => _errorMessage = 'Login Gagal. Periksa email dan password Anda.');
       } else {
-        // Pindah ke HomeScreen dan hapus histori navigasi
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -116,7 +115,6 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 8),
               OutlinedButton(
                 onPressed: () {
-                  // Navigate to the new Register Screen
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const RegisterScreen()),

@@ -140,7 +140,6 @@ class _TakeReportScreenState extends State<TakeReportScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Display either camera preview or the captured photo
             _capturedImage == null
                 ? (_isCameraInitialized
                     ? Stack(

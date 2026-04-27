@@ -11,7 +11,6 @@ class AuthService {
 
   Future<User?> registerWithEmailAndPassword(String email, String password, String username) async {
     try {
-      // 1. Create the Auth account
       UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email, 
         password: password
@@ -19,7 +18,6 @@ class AuthService {
       
       User? user = result.user;
       
-      // 2. Save the username to Firestore tied to their new UID
       if (user != null) {
         await _firestore.collection('users').doc(user.uid).set({
           'username': username,

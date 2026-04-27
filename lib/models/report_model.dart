@@ -5,7 +5,7 @@ class Report {
   final double latitude;
   final double longitude;
   final String timestamp;
-  final int isSynced; // 0 = local only, 1 = cloud-synced
+  final int isSynced;
 
   Report({
     this.id,
