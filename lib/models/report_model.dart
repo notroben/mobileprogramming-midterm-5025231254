@@ -5,6 +5,7 @@ class Report {
   final double latitude;
   final double longitude;
   final String timestamp;
+  final int isSynced; // 0 = local only, 1 = cloud-synced
 
   Report({
     this.id,
@@ -13,6 +14,7 @@ class Report {
     required this.latitude,
     required this.longitude,
     required this.timestamp,
+    this.isSynced = 0,
   });
 
   Map<String, dynamic> toMap() {
@@ -23,6 +25,7 @@ class Report {
       'latitude': latitude,
       'longitude': longitude,
       'timestamp': timestamp,
+      'isSynced': isSynced,
     };
   }
 }

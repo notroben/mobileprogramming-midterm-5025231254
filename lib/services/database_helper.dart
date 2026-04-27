@@ -28,7 +28,8 @@ class DatabaseHelper {
       caption TEXT NOT NULL,
       latitude REAL NOT NULL,
       longitude REAL NOT NULL,
-      timestamp TEXT NOT NULL
+      timestamp TEXT NOT NULL,
+      isSynced INTEGER NOT NULL DEFAULT 0 
     )
     ''');
   }
@@ -61,5 +62,24 @@ class DatabaseHelper {
   Future<int> deleteReport(int id) async {
     final db = await instance.database;
     return await db.delete('reports', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<List<Report>> getUnsyncedReports() async {
+    final db = await instance.database;
+    final maps = await db.query('reports', where: 'isSynced = ?', whereArgs: [0]);
+    return List.generate(maps.length, (i) => Report(
+        id: maps[i]['id'] as int,
+        imagePath: maps[i]['imagePath'] as String,
+        caption: maps[i]['caption'] as String,
+        latitude: maps[i]['latitude'] as double,
+        longitude: maps[i]['longitude'] as double,
+        timestamp: maps[i]['timestamp'] as String,
+        isSynced: maps[i]['isSynced'] as int,
+      ));
+  }
+
+  Future<int> markAsSynced(int id) async {
+    final db = await instance.database;
+    return await db.update('reports', {'isSynced': 1}, where: 'id = ?', whereArgs: [id]);
   }
 }
